@@ -1,7 +1,6 @@
 async function run() {
   const source = await fetch('./main.wasm');
-  const bytes = await source.arrayBuffer();
-  const webAssemblyObject = await WebAssembly.instantiate(bytes, {});
+  const webAssemblyObject = await WebAssembly.instantiateStreaming(source, {});
 
   const sumI32 = webAssemblyObject.instance.exports['sum_i32'];
 
