@@ -1,15 +1,13 @@
-function run() {
-  fetch('./main.wasm')
-    .then((source) => source.arrayBuffer())
-    .then((bytes) => WebAssembly.instantiate(bytes))
-    .then((webAssemblyObject) => {
-      const sumI32 = webAssemblyObject.instance.exports['sum_i32'];
+async function run() {
+  const source = await fetch('./main.wasm');
+  const bytes = await source.arrayBuffer();
+  const webAssemblyObject = await WebAssembly.instantiate(bytes);
 
-      const result = sumI32(1, 2);
+  const sumI32 = webAssemblyObject.instance.exports['sum_i32'];
 
-      console.log(result);
-    })
-    .catch((error) => console.error(error));
+  const result = sumI32(1, 2);
+
+  console.log(result);
 }
 
 run();
