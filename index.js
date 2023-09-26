@@ -3,9 +3,9 @@ function run() {
     .then((source) => source.arrayBuffer())
     .then((bytes) => WebAssembly.instantiate(bytes))
     .then((webAssemblyObject) => {
-      const get10I32 = webAssemblyObject.instance.exports['get_10_i32'];
+      const sumNumsI32 = webAssemblyObject.instance.exports['sum_nums_i32'];
 
-      const result = get10I32();
+      const result = sumNumsI32(1, 2);
 
       console.log(result);
     })
