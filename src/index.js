@@ -8,7 +8,7 @@
 const exports = {};
 
 async function load() {
-  const source = await fetch('./main.wasm');
+  const source = await fetch('../out/main.wasm');
   const webAssemblyObject = await WebAssembly.instantiateStreaming(source, {});
 
   exports.sumI32 = webAssemblyObject.instance.exports['sum_i32'];

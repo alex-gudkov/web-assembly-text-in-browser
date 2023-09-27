@@ -12,5 +12,5 @@ It includes following command-line tools:
 ## Commands
 
 ```bash
-wat2wasm ./main.wat -o ./main.wasm 
+wat2wasm ./src/main.wat -o ./out/main.wasm 
 ```
