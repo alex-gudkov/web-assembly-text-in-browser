@@ -7,7 +7,7 @@
  */
 const exports = {};
 
-async function run() {
+async function load() {
   const source = await fetch('./main.wasm');
   const webAssemblyObject = await WebAssembly.instantiateStreaming(source, {});
 
@@ -22,10 +22,20 @@ async function run() {
   if (!exports.divI32) {
     throw new Error('"divI32" export not found');
   }
+}
 
-  const result = exports.divI32(20, -6);
+load();
+
+const runButtonElement = document.getElementById('run-button');
+
+function run() {
+  const a = 20;
+  const b = -6;
+  const result = exports.divI32(a, b);
 
   console.log(result);
 }
 
-run();
+runButtonElement.onclick = () => {
+  run();
+};
